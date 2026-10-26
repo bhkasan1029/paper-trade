@@ -121,7 +121,7 @@ export function TopSearch() {
 
   return (
     <div ref={wrapRef} className="relative w-full max-w-xl min-w-0">
-      <Search className="absolute left-3 md:left-3.5 top-1/2 -translate-y-1/2 h-[18px] w-[18px] text-muted-foreground pointer-events-none" />
+      <Search className="absolute left-3 md:left-3.5 top-1/2 -translate-y-1/2 h-[18px] w-[18px] text-black/40 pointer-events-none" />
       <input
         ref={inputRef}
         type="text"
@@ -133,29 +133,29 @@ export function TopSearch() {
         onFocus={() => setOpen(true)}
         onKeyDown={onKeyDown}
         placeholder="Search ticker…"
-        className="w-full h-9 md:h-10 pl-9 md:pl-10 pr-9 md:pr-16 rounded-md bg-white/[0.03] border border-white/5 text-[14px] md:text-[15px] placeholder:text-muted-foreground/70 outline-none focus:border-primary/40"
+        className="w-full h-9 md:h-10 pl-9 md:pl-10 pr-9 md:pr-16 rounded-md bg-black/5 border border-black/10 text-black text-[14px] md:text-[15px] placeholder:text-black/40 outline-none focus:border-black/30"
       />
       {loading ? (
-        <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 animate-spin text-muted-foreground" />
+        <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 animate-spin text-black/40" />
       ) : (
-        <kbd className="hidden md:inline-block absolute right-2 top-1/2 -translate-y-1/2 px-1.5 py-0.5 text-[10px] rounded bg-white/5 border border-white/5 text-muted-foreground">
+        <kbd className="hidden md:inline-block absolute right-2 top-1/2 -translate-y-1/2 px-1.5 py-0.5 text-[10px] rounded bg-black/5 border border-black/10 text-black/50">
           ⌘K
         </kbd>
       )}
 
       {showDropdown && (
-        <div className="absolute left-0 right-0 top-[calc(100%+6px)] rounded-lg border border-white/[0.12] bg-popover/95 backdrop-blur-md overflow-hidden z-50 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.03),inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-primary/5">
+        <div className="absolute left-0 right-0 top-[calc(100%+6px)] rounded-lg border border-black/10 bg-card/60 backdrop-blur-md overflow-hidden z-50 shadow-[0_8px_24px_-4px_rgba(0,0,0,0.15)]">
           {showRecents ? (
             <>
               <div className="flex items-center justify-between px-3 pt-2.5 pb-1">
-                <span className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground font-medium flex items-center gap-1.5">
+                <span className="text-[10px] tracking-[0.14em] uppercase text-black/50 font-medium flex items-center gap-1.5">
                   <Clock className="h-3 w-3" />
                   Recently viewed
                 </span>
                 <button
                   type="button"
                   onClick={() => clearRecents()}
-                  className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-[10px] text-black/50 hover:text-black transition-colors"
                 >
                   Clear
                 </button>
@@ -170,12 +170,12 @@ export function TopSearch() {
                       className={cn(
                         "w-full flex items-center gap-3 px-3 py-2 text-left text-sm transition-colors",
                         i === active
-                          ? "bg-sidebar-accent"
-                          : "hover:bg-sidebar-accent/60",
+                          ? "bg-black/10"
+                          : "hover:bg-black/5",
                       )}
                     >
-                      <div className="h-7 w-7 shrink-0 rounded bg-white/5 flex items-center justify-center">
-                        <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+                      <div className="h-7 w-7 shrink-0 rounded bg-black/5 flex items-center justify-center">
+                        <Clock className="h-3.5 w-3.5 text-black/50" />
                       </div>
                       <div className="min-w-0 flex-1 pr-7">
                         <div className="flex items-center gap-2">
@@ -183,10 +183,10 @@ export function TopSearch() {
                             {r.symbol}
                           </span>
                         </div>
-                        <div className="text-[12px] text-muted-foreground truncate mt-0.5">
+                        <div className="text-[12px] text-black/50 truncate mt-0.5">
                           {r.name ?? r.symbol}
                           {r.exchange && (
-                            <span className="ml-1.5 text-muted-foreground/60">
+                            <span className="ml-1.5 text-black/40">
                               · {r.exchange}
                             </span>
                           )}
@@ -199,7 +199,7 @@ export function TopSearch() {
                         e.stopPropagation();
                         removeRecent(r.symbol);
                       }}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 h-6 w-6 rounded flex items-center justify-center text-muted-foreground opacity-60 md:opacity-0 md:group-hover:opacity-100 hover:text-foreground hover:bg-white/[0.05] transition-all"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 h-6 w-6 rounded flex items-center justify-center text-black/50 opacity-60 md:opacity-0 md:group-hover:opacity-100 hover:text-black hover:bg-black/10 transition-all"
                       aria-label={`Remove ${r.symbol}`}
                     >
                       <X className="h-3 w-3" />
@@ -209,7 +209,7 @@ export function TopSearch() {
               </ul>
             </>
           ) : results.length === 0 && !loading ? (
-            <div className="px-4 py-5 text-[13px] text-muted-foreground text-center">
+            <div className="px-4 py-5 text-[13px] text-black/50 text-center">
               {q.trim() ? "No matches." : "Start typing…"}
             </div>
           ) : (
@@ -227,8 +227,8 @@ export function TopSearch() {
                         : "hover:bg-sidebar-accent/60",
                     )}
                   >
-                    <div className="h-7 w-7 shrink-0 rounded bg-primary/10 flex items-center justify-center">
-                      <TrendingUp className="h-3.5 w-3.5 text-primary" />
+                    <div className="h-7 w-7 shrink-0 rounded bg-black/5 flex items-center justify-center">
+                      <TrendingUp className="h-3.5 w-3.5 text-black/50" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
@@ -236,15 +236,15 @@ export function TopSearch() {
                           {r.symbol}
                         </span>
                         {r.type && (
-                          <span className="px-1.5 py-0.5 text-[10px] tracking-wider rounded bg-white/5 text-muted-foreground border border-white/5">
+                          <span className="px-1.5 py-0.5 text-[10px] tracking-wider rounded bg-black/5 text-black/50 border border-black/10">
                             {r.type}
                           </span>
                         )}
                       </div>
-                      <div className="text-[12px] text-muted-foreground truncate mt-0.5">
+                      <div className="text-[12px] text-black/50 truncate mt-0.5">
                         {r.name}
                         {r.exchange && (
-                          <span className="ml-1.5 text-muted-foreground/60">
+                          <span className="ml-1.5 text-black/40">
                             · {r.exchange}
                           </span>
                         )}
@@ -256,13 +256,13 @@ export function TopSearch() {
             </ul>
           )}
           {results.length > 0 && (
-            <div className="border-t border-white/[0.08] bg-white/[0.015] px-3.5 py-2 text-[11px] text-muted-foreground flex items-center justify-between">
+            <div className="border-t border-black/10 bg-black/[0.03] px-3.5 py-2 text-[11px] text-black/50 flex items-center justify-between">
               <span>
-                <kbd className="px-1 py-0.5 rounded bg-white/5 text-[10px] border border-white/5 mr-0.5">↑↓</kbd>{" "}
+                <kbd className="px-1 py-0.5 rounded bg-black/5 text-[10px] border border-black/10 mr-0.5">↑↓</kbd>{" "}
                 navigate ·{" "}
-                <kbd className="px-1 py-0.5 rounded bg-white/5 text-[10px] border border-white/5 mx-0.5">↵</kbd>{" "}
+                <kbd className="px-1 py-0.5 rounded bg-black/5 text-[10px] border border-black/10 mx-0.5">↵</kbd>{" "}
                 open ·{" "}
-                <kbd className="px-1 py-0.5 rounded bg-white/5 text-[10px] border border-white/5 mx-0.5">esc</kbd>{" "}
+                <kbd className="px-1 py-0.5 rounded bg-black/5 text-[10px] border border-black/10 mx-0.5">esc</kbd>{" "}
                 close
               </span>
               <span className="tracking-wider">{results.length} matches</span>
