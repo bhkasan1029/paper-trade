@@ -46,12 +46,12 @@ export function SidebarNav({
             className={cn(
               "flex items-center gap-3 rounded-md px-3 py-2.5 text-[14px] transition-colors relative",
               active
-                ? "bg-sidebar-accent text-foreground"
-                : "text-muted-foreground hover:bg-sidebar-accent/60 hover:text-foreground",
+                ? "bg-sidebar-accent text-[#E37383]"
+                : "text-[#E37383] opacity-70 hover:bg-sidebar-accent/60 hover:opacity-100",
             )}
           >
             <Icon className="h-[18px] w-[18px]" />
-            <span className="flex-1">{label}</span>
+            <span className="flex-1 font-bold">{label}</span>
             {count && (
               <span className="px-1.5 py-0.5 text-[11px] font-semibold tracking-wider rounded bg-primary/10 text-primary border border-primary/20">
                 {count}

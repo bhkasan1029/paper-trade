@@ -2,7 +2,6 @@ import Link from "next/link";
 import { db } from "@/lib/db";
 import { formatCurrency, type Currency } from "@/lib/currency";
 import { MetricCard, MicroBadge } from "@/components/metric-card";
-import { StatusBanner } from "@/components/status-banner";
 import { TimeRangeSwitcher } from "@/components/time-range-switcher";
 import { Briefcase, Plus } from "lucide-react";
 
@@ -25,8 +24,6 @@ export default async function DashboardPage() {
 
   return (
     <div className="p-4 md:p-6 space-y-5 md:space-y-6 max-w-[1400px] mx-auto">
-      <StatusBanner />
-
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 md:gap-4 pt-1 md:pt-2">
         <div className="min-w-0">
           <h1 className="text-[26px] md:text-[36px] font-semibold tracking-tight leading-tight">

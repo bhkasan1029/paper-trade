@@ -57,7 +57,7 @@ export default async function PortfoliosPage() {
                     </div>
                   </div>
                 </div>
-                <MicroBadge tone="primary">Open</MicroBadge>
+                <MicroBadge tone="muted">Open</MicroBadge>
               </div>
 
               <div className="mt-5 md:mt-6">

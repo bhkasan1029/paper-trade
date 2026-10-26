@@ -179,10 +179,24 @@ export function PositionsPanel({
     (s, r) => s + (r.marketValue ?? r.totalEntryValue),
     0,
   );
+  const totalEntryValue = aggregateRows.reduce(
+    (s, r) => s + r.totalEntryValue,
+    0,
+  );
+  const totalUnrealizedPct =
+    totalEntryValue !== 0 ? (totalUnrealized / totalEntryValue) * 100 : null;
   const totalRealized = closed.reduce(
     (s, c) => s + (c.closePrice - c.entryPrice) * c.quantity,
     0,
   );
+  const totalClosedEntryValue = closed.reduce(
+    (s, c) => s + c.entryPrice * c.quantity,
+    0,
+  );
+  const totalRealizedPct =
+    totalClosedEntryValue !== 0
+      ? (totalRealized / totalClosedEntryValue) * 100
+      : null;
 
   // FIFO preview for sell dialog
   const sellPreview = useMemo(() => {
@@ -247,12 +261,18 @@ export function PositionsPanel({
                 totalUnrealized === 0
                   ? ""
                   : totalUnrealized > 0
-                    ? "text-primary"
+                    ? "text-positive"
                     : "text-destructive"
               }
             >
               {totalUnrealized >= 0 ? "+" : ""}
               {fmt.format(totalUnrealized)}
+              {totalUnrealizedPct !== null && (
+                <span className="text-[13px] ml-1.5 opacity-70">
+                  ({totalUnrealized >= 0 ? "+" : ""}
+                  {totalUnrealizedPct.toFixed(2)}%)
+                </span>
+              )}
             </span>
           }
           sub="Live across all open positions"
@@ -265,12 +285,18 @@ export function PositionsPanel({
                 totalRealized === 0
                   ? ""
                   : totalRealized > 0
-                    ? "text-primary"
+                    ? "text-positive"
                     : "text-destructive"
               }
             >
               {totalRealized >= 0 ? "+" : ""}
               {fmt.format(totalRealized)}
+              {totalRealizedPct !== null && (
+                <span className="text-[13px] ml-1.5 opacity-70">
+                  ({totalRealized >= 0 ? "+" : ""}
+                  {totalRealizedPct.toFixed(2)}%)
+                </span>
+              )}
             </span>
           }
           sub={`${closed.length} closed lot${closed.length === 1 ? "" : "s"}`}
@@ -314,12 +340,12 @@ export function PositionsPanel({
                   <th className="pl-4 md:pl-6 pr-3 py-2.5 font-medium">
                     Symbol
                   </th>
-                  <th className="px-3 py-2.5 font-medium text-right">Qty</th>
-                  <th className="px-3 py-2.5 font-medium text-right">
+                  <th className="hidden sm:table-cell px-3 py-2.5 font-medium text-right">Qty</th>
+                  <th className="hidden sm:table-cell px-3 py-2.5 font-medium text-right">
                     Avg Cost
                   </th>
                   <th className="px-3 py-2.5 font-medium text-right">LTP</th>
-                  <th className="px-3 py-2.5 font-medium text-right">
+                  <th className="hidden sm:table-cell px-3 py-2.5 font-medium text-right">
                     Mkt Value
                   </th>
                   <th className="px-3 py-2.5 font-medium text-right">
@@ -377,14 +403,15 @@ export function PositionsPanel({
                               </Link>
                               <div className="text-[11px] text-muted-foreground mt-0.5">
                                 {r.lots.length} lot{r.lots.length === 1 ? "" : "s"}
+                                <span className="sm:hidden"> · {r.totalQty} qty · {fmt.format(r.avgCost)}</span>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="px-3 py-3.5 text-right num font-medium">
+                        <td className="hidden sm:table-cell px-3 py-3.5 text-right num font-medium">
                           {r.totalQty}
                         </td>
-                        <td className="px-3 py-3.5 text-right num">
+                        <td className="hidden sm:table-cell px-3 py-3.5 text-right num">
                           {fmt.format(r.avgCost)}
                         </td>
                         <td className="px-3 py-3.5 text-right num">
@@ -394,7 +421,7 @@ export function PositionsPanel({
                             <span className="text-muted-foreground">—</span>
                           )}
                         </td>
-                        <td className="px-3 py-3.5 text-right num">
+                        <td className="hidden sm:table-cell px-3 py-3.5 text-right num">
                           {r.marketValue !== null ? (
                             fmt.format(r.marketValue)
                           ) : (
@@ -407,7 +434,7 @@ export function PositionsPanel({
                             r.unrealized === null
                               ? ""
                               : positive
-                                ? "text-primary"
+                                ? "text-positive"
                                 : "text-destructive",
                           )}
                         >
@@ -484,6 +511,10 @@ export function PositionsPanel({
                                         ? (r.currentPrice - lot.entryPrice) *
                                           lot.quantity
                                         : null;
+                                    const lotUnrealPct =
+                                      lotUnreal !== null && cost !== 0
+                                        ? (lotUnreal / cost) * 100
+                                        : null;
                                     const positive = (lotUnreal ?? 0) >= 0;
                                     return (
                                       <tr
@@ -514,7 +545,7 @@ export function PositionsPanel({
                                             lotUnreal === null
                                               ? "text-muted-foreground"
                                               : positive
-                                                ? "text-primary"
+                                                ? "text-positive"
                                                 : "text-destructive",
                                           )}
                                         >
@@ -524,6 +555,12 @@ export function PositionsPanel({
                                             <>
                                               {positive ? "+" : ""}
                                               {fmt.format(lotUnreal)}
+                                              {lotUnrealPct !== null && (
+                                                <span className="text-[10px] ml-1 opacity-60">
+                                                  ({positive ? "+" : ""}
+                                                  {lotUnrealPct.toFixed(2)}%)
+                                                </span>
+                                              )}
                                             </>
                                           )}
                                         </td>
@@ -604,7 +641,7 @@ export function PositionsPanel({
                       <td
                         className={cn(
                           "px-3 py-3 text-right num",
-                          positive ? "text-primary" : "text-destructive",
+                          positive ? "text-positive" : "text-destructive",
                         )}
                       >
                         {positive ? "+" : ""}
@@ -713,7 +750,7 @@ export function PositionsPanel({
                         className={cn(
                           "num font-medium",
                           sellPreview.realized >= 0
-                            ? "text-primary"
+                            ? "text-positive"
                             : "text-destructive",
                         )}
                       >
@@ -754,7 +791,7 @@ export function PositionsPanel({
                             <span
                               className={cn(
                                 "num",
-                                positive ? "text-primary" : "text-destructive",
+                                positive ? "text-positive" : "text-destructive",
                               )}
                             >
                               {positive ? "+" : ""}

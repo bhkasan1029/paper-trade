@@ -45,25 +45,25 @@ export function PriceChart({ symbol }: { symbol: string }) {
     const chart = createChart(containerRef.current, {
       layout: {
         background: { color: "transparent" },
-        textColor: "rgba(255,255,255,0.55)",
+        textColor: "rgba(0,0,0,0.65)",
         fontFamily: "var(--font-geist-sans), ui-sans-serif, system-ui",
       },
       grid: {
-        vertLines: { color: "rgba(255,255,255,0.04)" },
-        horzLines: { color: "rgba(255,255,255,0.04)" },
+        vertLines: { color: "rgba(0,0,0,0.07)" },
+        horzLines: { color: "rgba(0,0,0,0.07)" },
       },
       rightPriceScale: {
-        borderColor: "rgba(255,255,255,0.06)",
+        borderColor: "rgba(0,0,0,0.12)",
       },
       timeScale: {
-        borderColor: "rgba(255,255,255,0.06)",
+        borderColor: "rgba(0,0,0,0.12)",
         timeVisible: true,
         secondsVisible: false,
       },
       crosshair: {
         mode: CrosshairMode.Normal,
-        vertLine: { color: "rgba(129,255,178,0.4)", width: 1, style: 2 },
-        horzLine: { color: "rgba(129,255,178,0.4)", width: 1, style: 2 },
+        vertLine: { color: "rgba(0,0,0,0.25)", width: 1, style: 2 },
+        horzLine: { color: "rgba(0,0,0,0.25)", width: 1, style: 2 },
       },
       autoSize: true,
     });
@@ -110,13 +110,13 @@ export function PriceChart({ symbol }: { symbol: string }) {
         const rising =
           data.bars.length > 1 &&
           data.bars[data.bars.length - 1].close >= data.bars[0].close;
-        const lineColor = rising ? "#22c98a" : "#e5484d";
+        const lineColor = rising ? "#17956a" : "#e5484d";
 
         if (type === "CANDLES") {
           const series = chartRef.current.addSeries(CandlestickSeries, {
-            upColor: "#22c98a",
+            upColor: "#17956a",
             downColor: "#e5484d",
-            wickUpColor: "#22c98a",
+            wickUpColor: "#17956a",
             wickDownColor: "#e5484d",
             borderVisible: false,
           });
@@ -134,7 +134,7 @@ export function PriceChart({ symbol }: { symbol: string }) {
           const series = chartRef.current.addSeries(AreaSeries, {
             lineColor,
             topColor: rising
-              ? "rgba(34,201,138,0.28)"
+              ? "rgba(23,149,106,0.28)"
               : "rgba(229,72,77,0.28)",
             bottomColor: "rgba(255,255,255,0)",
             lineWidth: 2,
@@ -201,7 +201,7 @@ export function PriceChart({ symbol }: { symbol: string }) {
             className={cn(
               "flex items-center gap-1 px-2 py-1 rounded text-xs transition-colors",
               type === "AREA"
-                ? "bg-primary/15 text-primary"
+                ? "bg-black/10 text-black font-semibold"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >
@@ -214,7 +214,7 @@ export function PriceChart({ symbol }: { symbol: string }) {
             className={cn(
               "flex items-center gap-1 px-2 py-1 rounded text-xs transition-colors",
               type === "CANDLES"
-                ? "bg-primary/15 text-primary"
+                ? "bg-black/10 text-black font-semibold"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >
@@ -255,7 +255,7 @@ export function PriceChart({ symbol }: { symbol: string }) {
               className={cn(
                 "px-2.5 py-1.5 md:py-1 rounded text-xs transition-colors num shrink-0",
                 range === r
-                  ? "bg-primary/15 text-primary"
+                  ? "bg-black/10 text-black font-semibold"
                   : "text-muted-foreground hover:text-foreground",
               )}
             >

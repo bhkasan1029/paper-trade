@@ -147,7 +147,7 @@ export function NotesPanel({
               className={cn(
                 "flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded text-xs transition-colors",
                 mode === key
-                  ? "bg-primary/15 text-primary"
+                  ? "bg-black/10 text-black font-semibold"
                   : "text-muted-foreground hover:text-foreground",
               )}
             >
@@ -255,7 +255,7 @@ function FilterChip({
         "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs transition-colors border",
         active
           ? tone === "primary"
-            ? "bg-primary/15 text-primary border-primary/30"
+            ? "bg-black/10 text-black font-semibold border-black/20"
             : "bg-white/10 text-foreground border-white/10"
           : "bg-transparent text-muted-foreground border-white/[0.06] hover:text-foreground hover:bg-white/[0.03]",
       )}
@@ -267,7 +267,7 @@ function FilterChip({
           "ml-0.5 text-[10px] tabular-nums px-1 rounded",
           active
             ? tone === "primary"
-              ? "bg-primary/20"
+              ? "bg-black/10"
               : "bg-white/10"
             : "bg-white/[0.04]",
         )}
@@ -307,7 +307,7 @@ function NoteRow({ note, portfolioId }: { note: Note; portfolioId: string }) {
               className={cn(
                 "px-3 py-1 rounded text-xs transition-colors",
                 mode === key
-                  ? "bg-primary/15 text-primary"
+                  ? "bg-black/10 text-black font-semibold"
                   : "text-muted-foreground",
               )}
             >

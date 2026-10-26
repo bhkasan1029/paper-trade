@@ -16,7 +16,7 @@ export function TimeRangeSwitcher() {
           className={cn(
             "px-2.5 py-1.5 md:py-1 rounded transition-colors",
             active === r
-              ? "bg-primary/15 text-primary"
+              ? "bg-black/10 text-black font-semibold"
               : "text-muted-foreground hover:text-foreground",
           )}
         >

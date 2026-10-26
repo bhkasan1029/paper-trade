@@ -191,7 +191,7 @@ export function OptionsChain({
             className={cn(
               "px-3 py-1.5 text-[12px] font-medium transition-colors",
               side === "calls"
-                ? "bg-primary/15 text-primary"
+                ? "bg-black/10 text-black font-semibold"
                 : "text-muted-foreground hover:text-foreground hover:bg-white/[0.03]",
             )}
           >
@@ -227,7 +227,7 @@ export function OptionsChain({
               className={cn(
                 "shrink-0 px-2.5 py-1.5 rounded text-[12px] border transition-colors flex items-baseline gap-1.5",
                 active
-                  ? "bg-primary/15 text-primary border-primary/30"
+                  ? "bg-black/10 text-black font-semibold border-black/20"
                   : "bg-white/[0.02] text-muted-foreground border-white/[0.06] hover:bg-white/[0.05] hover:text-foreground",
               )}
             >
@@ -288,7 +288,7 @@ export function OptionsChain({
                     <td
                       className={cn(
                         "pl-4 md:pl-6 pr-3 py-2 num font-medium",
-                        inTheMoney && "text-primary",
+                        inTheMoney && "text-positive",
                         !inTheMoney && "text-muted-foreground",
                       )}
                     >
@@ -337,7 +337,7 @@ export function OptionsChain({
                           c.lastPrice <= 0
                             ? "bg-white/[0.02] text-muted-foreground border-white/[0.04] cursor-not-allowed"
                             : side === "calls"
-                              ? "bg-primary/10 text-primary border-primary/30 hover:bg-primary/20"
+                              ? "bg-black/10 text-black border-black/20 hover:bg-black/15"
                               : "bg-destructive/10 text-destructive border-destructive/30 hover:bg-destructive/20",
                         )}
                       >

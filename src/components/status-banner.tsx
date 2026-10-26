@@ -4,7 +4,7 @@ export function StatusBanner() {
   return (
     <div className="rounded-xl border border-white/[0.06] bg-card/60 px-4 md:px-6 py-3 md:py-4 flex flex-col md:flex-row md:items-center gap-3">
       <div className="flex items-start md:items-center gap-2 md:gap-3 min-w-0">
-        <MicroBadge tone="primary">● ENGINE ONLINE</MicroBadge>
+        <MicroBadge tone="muted">● ENGINE ONLINE</MicroBadge>
         <span className="text-[13px] md:text-[14px] min-w-0">
           <span className="font-medium">Phase 1 Foundation Active:</span>{" "}
           <span className="text-muted-foreground">

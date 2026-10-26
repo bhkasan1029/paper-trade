@@ -67,7 +67,7 @@ export function LayoutShell({
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="lg:hidden h-9 w-9 shrink-0 flex items-center justify-center rounded-md border border-white/[0.06] bg-white/[0.03] text-muted-foreground hover:text-foreground"
+            className="lg:hidden h-9 w-9 shrink-0 flex items-center justify-center rounded-md border border-black/10 bg-black/5 text-[#666666] hover:text-black"
             aria-label="Open menu"
           >
             <Menu className="h-4 w-4" />

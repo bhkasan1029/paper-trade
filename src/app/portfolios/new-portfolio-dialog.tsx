@@ -27,7 +27,7 @@ export function NewPortfolioDialog() {
       <DialogTrigger asChild>
         <Button
           size="sm"
-          className="bg-primary/15 text-primary border border-primary/30 hover:bg-primary/25"
+          className="bg-primary/15 text-[#E37383] border border-primary/30 hover:bg-primary/25"
         >
           <Plus className="h-4 w-4 mr-1" />
           New Portfolio

@@ -134,7 +134,7 @@ export function QuoteCard({
             <div
               className={cn(
                 "num text-[13px] md:text-[15px] mt-2 flex items-center md:justify-end gap-1.5",
-                positive ? "text-primary" : "text-destructive",
+                positive ? "text-positive" : "text-destructive",
               )}
             >
               {positive ? (

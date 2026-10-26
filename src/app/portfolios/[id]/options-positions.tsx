@@ -404,7 +404,7 @@ export function OptionsPositions({
                             r.unrealized === null
                               ? ""
                               : positive
-                                ? "text-primary"
+                                ? "text-positive"
                                 : "text-destructive",
                           )}
                         >
@@ -477,6 +477,10 @@ export function OptionsPositions({
                                           lot.contracts *
                                           CONTRACT_MULT
                                         : null;
+                                    const lotUnrealPct =
+                                      lotUnreal !== null && cost !== 0
+                                        ? (lotUnreal / cost) * 100
+                                        : null;
                                     const positive = (lotUnreal ?? 0) >= 0;
                                     return (
                                       <tr
@@ -507,7 +511,7 @@ export function OptionsPositions({
                                             lotUnreal === null
                                               ? "text-muted-foreground"
                                               : positive
-                                                ? "text-primary"
+                                                ? "text-positive"
                                                 : "text-destructive",
                                           )}
                                         >
@@ -517,6 +521,12 @@ export function OptionsPositions({
                                             <>
                                               {positive ? "+" : ""}
                                               {fmt.format(lotUnreal)}
+                                              {lotUnrealPct !== null && (
+                                                <span className="text-[10px] ml-1 opacity-60">
+                                                  ({positive ? "+" : ""}
+                                                  {lotUnrealPct.toFixed(2)}%)
+                                                </span>
+                                              )}
                                             </>
                                           )}
                                         </td>
@@ -633,7 +643,7 @@ export function OptionsPositions({
                       <td
                         className={cn(
                           "px-3 py-3 text-right num",
-                          positive ? "text-primary" : "text-destructive",
+                          positive ? "text-positive" : "text-destructive",
                         )}
                       >
                         {positive ? "+" : ""}
@@ -758,7 +768,7 @@ export function OptionsPositions({
                         className={cn(
                           "num font-medium",
                           sellPreview.realized >= 0
-                            ? "text-primary"
+                            ? "text-positive"
                             : "text-destructive",
                         )}
                       >
@@ -800,7 +810,7 @@ export function OptionsPositions({
                               className={cn(
                                 "num",
                                 positive
-                                  ? "text-primary"
+                                  ? "text-positive"
                                   : "text-destructive",
                               )}
                             >

@@ -55,7 +55,7 @@ export default async function HistoryPage() {
           </p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
-          <MicroBadge tone="primary">{open.length} open</MicroBadge>
+          <MicroBadge tone="muted">{open.length} open</MicroBadge>
           <MicroBadge tone="muted">{closed.length} closed</MicroBadge>
         </div>
       </div>
@@ -89,7 +89,7 @@ export default async function HistoryPage() {
                   totalRealized === 0
                     ? "text-foreground"
                     : totalRealized > 0
-                      ? "text-primary"
+                      ? "text-positive"
                       : "text-destructive",
                 )}
               >
@@ -185,7 +185,7 @@ export default async function HistoryPage() {
                         {t.closedAt ? (
                           <MicroBadge tone="muted">Closed</MicroBadge>
                         ) : (
-                          <MicroBadge tone="primary">Open</MicroBadge>
+                          <MicroBadge tone="muted">Open</MicroBadge>
                         )}
                       </td>
                       <td className="px-3 py-3 text-right num">
@@ -207,7 +207,7 @@ export default async function HistoryPage() {
                           closedRealized === null
                             ? ""
                             : positive
-                              ? "text-primary"
+                              ? "text-positive"
                               : "text-destructive",
                         )}
                       >
