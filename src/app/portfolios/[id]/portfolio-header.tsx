@@ -69,10 +69,8 @@ export function PortfolioHeader({
       </div>
 
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" className="shrink-0">
-            <MoreHorizontal className="h-4 w-4" />
-          </Button>
+        <DropdownMenuTrigger className="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-md hover:bg-accent transition-colors">
+          <MoreHorizontal className="h-4 w-4" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
           <DropdownMenuItem onClick={() => setRenameOpen(true)}>

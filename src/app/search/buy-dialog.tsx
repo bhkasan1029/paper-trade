@@ -85,14 +85,9 @@ export function BuyDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 text-[14px] font-semibold transition-colors shadow-[0_0_20px_-4px_var(--primary)]"
-        >
+      <DialogTrigger className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 text-[14px] font-semibold transition-colors shadow-[0_0_20px_-4px_var(--primary)]">
           <ShoppingCart className="h-4 w-4" />
           Buy {quote.symbol}
-        </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>

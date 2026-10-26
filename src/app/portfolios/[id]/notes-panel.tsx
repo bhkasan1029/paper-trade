@@ -408,10 +408,8 @@ function NoteRow({ note, portfolioId }: { note: Note; portfolioId: string }) {
             <Pencil className="h-3.5 w-3.5" />
           </Button>
           <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-7 w-7">
-                <Trash2 className="h-3.5 w-3.5 text-destructive" />
-              </Button>
+            <AlertDialogTrigger className="inline-flex items-center justify-center h-7 w-7 rounded-md hover:bg-accent transition-colors">
+              <Trash2 className="h-3.5 w-3.5 text-destructive" />
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>

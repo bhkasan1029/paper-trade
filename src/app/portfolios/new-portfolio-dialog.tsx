@@ -24,14 +24,9 @@ export function NewPortfolioDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          size="sm"
-          className="bg-primary/15 text-[#E37383] border border-primary/30 hover:bg-primary/25"
-        >
-          <Plus className="h-4 w-4 mr-1" />
-          New Portfolio
-        </Button>
+      <DialogTrigger className="inline-flex items-center gap-1.5 h-8 px-3 text-sm rounded-md bg-primary/15 text-[#E37383] border border-primary/30 hover:bg-primary/25 font-medium transition-colors">
+        <Plus className="h-4 w-4" />
+        New Portfolio
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
